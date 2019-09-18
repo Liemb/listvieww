@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.lv);
 
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this.layout.support_simple_spinner_dropdown_item, lands);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, lands);
         lv.setAdapter(adp);
 
         lv.setOnItemClickListener(this);
