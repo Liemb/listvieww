@@ -11,9 +11,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    String[] lands = {"Asia", "Europe", "Africa", "Antartica", "Australia", "South America", "North America"};
+    String[] lands = {"Asia", "Europe", "Africa", "South America", "North America"};
     ListView lv;
-    String st;
+    int y=60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +21,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.lv);
 
+        lv.setOnItemClickListener(this);
+        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item, lands);
         lv.setAdapter(adp);
 
-        lv.setOnItemClickListener(this);
-        lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
 
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(this, "" +lands[position],Toast.LENGTH_SHORT).show();
-        st = lands[position];
+        y=position;
     }
 
     public void click(View view) {
-        if (st.length()!=0){
+        if (y!=60){
             Intent si = new Intent (this,Main2Activity.class);
-            si.putExtra("st",st);
+            si.putExtra("position",y);
             startActivity(si);
         }
     }
